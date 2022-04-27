@@ -6,19 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="style.css">
     
 </head>
-<body>
+<body >
     <div id="container">
-        <canvas id="myCanvas" width="600" height="600"
-        style="border:1px solid #d3d3d3; top: 0px; left: 0px;"  onmouseout="cnvs_clearCoordinates()">
-        Your browser does not support the canvas element.
-        </canvas>
-        <div id="xycoordinates"></div>
+        <ul class="radar">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            
+        </ul>
+        <canvas id="myCanvas" width="600" height="600" style="border:1px solid #d3d3d3; top: 0px; left: 0px;"></canvas>
     </div>
     
-
-    
+        
 </body>
 <script src="/main.js"></script>
 </html>

@@ -1,31 +1,47 @@
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
+const canvas = document.querySelector('#myCanvas');
+const context = canvas.getContext('2d');
 
-document.getElementById("myCanvas").addEventListener("mousemove", function(e) {
-    cnvs_getCoordinates(e);
-  });
+var canvasPos = getPosition(canvas);
+var mouseX = 0;
+var mouseY = 0;
+var coordX = 0;
+var coordY = 0;
 
-function cnvs_getCoordinates(e)
-{
-    x=e.clientX;
-    y=e.clientY;
-    document.getElementById("xycoordinates").innerHTML="<p>Coordinates:(" + x + "," + y + ")<p>";
+canvas.addEventListener("mousemove", setMousePosition, false);
+
+function setMousePosition(e) {
+    mouseX = e.clientX - canvasPos.x;
+    mouseY = e.clientY - canvasPos.y;
+    coordX = e.clientX - canvas.offsetLeft
+    coordY = e.clientY - canvas.offsetTop
 }
 
-function cnvs_clearCoordinates()
-{
-    document.getElementById("xycoordinates").innerHTML="";
+function getPosition(el) {
+    var xPosition = 0;
+    var yPosition = 0;
+
+    while (el) {
+        xPosition += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+        yPosition += (el.offsetTop - el.scrollTop + el.clientTop);
+        el = el.offsetParent;
+    }
+    return {
+        x: xPosition,
+        y: yPosition
+    };
+} 
+
+function update() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.font = "12px Arial";
+    context.strokeText("Coordinates:(" + Math.floor((coordX - 300) / 3) + "," + Math.floor(((coordY - 300) * -1 ) /3) + ")", coordX, coordY);
+    requestAnimationFrame(update);
 }
+update();
 
-const canvas2 = document.querySelector('canvas')
-const ctx2 = canvas.getContext('2d')
 
-$(document).bind('mousemove', function(e){
-    $('#xycoordinates').css({
-        left: e.pageX + 5,
-        top: e.pageY - 20
-    });
-});
+
+
 
 
 
