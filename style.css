@@ -5,6 +5,9 @@ body{
     background-size: cover;
 }
 
+.container{
+    background: black;
+}
 
 .radar{
     position: absolute;

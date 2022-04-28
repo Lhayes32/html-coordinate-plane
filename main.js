@@ -38,8 +38,34 @@ function getPosition(el) {
 
 function update() {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    context.font = "12px Arial";
-    context.strokeText("Coordinates:(" + Math.floor(coordX / 3) + "," + Math.floor((coordY * -1) / 3) + ")", coordX + 300 , coordY + 300);
+    context.font = "10px Arial";
+
+    // Quadrent 1, higher than 70 x/y
+    // ((Math.floor(coordX / 3)) > 0 && Math.floor((coordY * -1) / 3) > 0)
+    if (((Math.floor(coordX / 3)) >= 0 && Math.floor((coordY * -1) / 3) >= 70) || ((Math.floor(coordX / 3)) >= 70 && Math.floor((coordY * -1) / 3) >= 0)) {
+        context.strokeText("C:(" + Math.floor(coordX / 3) + "," + Math.floor((coordY * -1) / 3) + ")", (coordX + 300) - 40, coordY + 300 + 30);
+    }
+
+    // Quadrent 2, lower than -70 x and higher than 70 y
+    // ((Math.floor(coordX / 3)) < 0 && Math.floor((coordY * -1) / 3) > 0)
+    else if ((((Math.floor(coordX / 3)) <= 0) && (Math.floor((coordY * -1) / 3) >= 70)) || (((Math.floor(coordX / 3)) <= -70) && (Math.floor((coordY * -1) / 3) >= 0))){
+        context.strokeText("C:(" + Math.floor(coordX / 3) + "," + Math.floor((coordY * -1) / 3) + ")", (coordX + 300) , coordY + 300 + 30);
+    }
+
+    // if in quadrent 3
+    // ((Math.floor(coordX / 3)) < 0 && Math.floor((coordY * -1) / 3) < 0)
+    else if ((((Math.floor(coordX / 3)) <= 0) && (Math.floor((coordY * -1) / 3) <= -70)) || (((Math.floor(coordX / 3)) <= -70) && (Math.floor((coordY * -1) / 3) <= 0))) {
+        context.strokeText("C:(" + Math.floor(coordX / 3) + "," + Math.floor((coordY * -1) / 3) + ")", (coordX + 300), coordY + 300 );
+    }
+
+    // if in quadrent 4 and other locations
+    else {
+        context.strokeText("C:(" + Math.floor(coordX / 3) + "," + Math.floor((coordY * -1) / 3) + ")", (coordX + 300) - 40 , coordY + 300);
+    }
+
+    // need to add x / y axis 
+    // need to change this so it only does this when outside a certain range (x/y > 60)
+
     requestAnimationFrame(update);
 }
 update();
