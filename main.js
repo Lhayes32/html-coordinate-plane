@@ -1,6 +1,8 @@
 const canvas = document.querySelector('#myCanvas');
 const context = canvas.getContext('2d');
 
+const radar = document.querySelector(".radar");
+
 var canvasPos = getPosition(canvas);
 var mouseX = 0;
 var mouseY = 0;
@@ -12,8 +14,11 @@ canvas.addEventListener("mousemove", setMousePosition, false);
 function setMousePosition(e) {
     mouseX = e.clientX - canvasPos.x;
     mouseY = e.clientY - canvasPos.y;
-    coordX = e.clientX - canvas.offsetLeft
-    coordY = e.clientY - canvas.offsetTop
+    
+
+    coordX = e.clientX - canvas.offsetLeft;
+    coordY = e.clientY - canvas.offsetTop;
+    //console.log(mouseX + " " + mouseY + " " + e.clientX + " " + e.clientY + " " + coordX + " " + coordY);
 }
 
 function getPosition(el) {
@@ -34,7 +39,7 @@ function getPosition(el) {
 function update() {
     context.clearRect(0, 0, canvas.width, canvas.height);
     context.font = "12px Arial";
-    context.strokeText("Coordinates:(" + Math.floor((coordX - 300) / 3) + "," + Math.floor(((coordY - 300) * -1 ) /3) + ")", coordX, coordY);
+    context.strokeText("Coordinates:(" + Math.floor(coordX / 3) + "," + Math.floor((coordY * -1) / 3) + ")", coordX + 300 , coordY + 300);
     requestAnimationFrame(update);
 }
 update();

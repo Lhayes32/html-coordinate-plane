@@ -13,8 +13,8 @@ body{
     transform: translate(-50%, -50%);
     margin: 0;
     padding: 0;
-    width: 480px;
-    height: 480px;
+    width: 600px;
+    height: 600px;
     border-radius: 50%;
     border: 20px solid #f7f7f7;
     background-size: cover;
@@ -120,8 +120,8 @@ body{
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 250px;
-    height: 250px;
+    width: 360px;
+    height: 360px;
     background: linear-gradient(45deg, #00ff00 0%, transparent 50%);
     transform-origin: top left;
     animation: animate 2s linear infinite; 
